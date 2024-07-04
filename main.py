@@ -71,7 +71,6 @@ def run():
     dur_display = ['2 Month', '6 Month', '8 Month', '1 Year', '16 Month']
     dur_options = range(len(dur_display))
     dur = st.selectbox("Loan Duration", dur_options, format_func=lambda x: dur_display[x])
-    dur_log = math.log(dur + 1)
 
     if st.button("Submit"):
         duration = 0
@@ -85,6 +84,7 @@ def run():
             duration = 360
         if dur == 4:
             duration = 480
+        dur_log = math.log(duration + 1)
         features = [[gen, mar, dep, edu, emp, cred, prop, mon_log, loan_amt_log, dur_log, tot_log]]
         print(features)
         prediction = model.predict(features)
